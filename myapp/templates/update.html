@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <style>
+        
+        *{
+            margin: 0px;
+            padding: 0px;
+            /* box-sizing: border-box; */
+            /* overflow: hidden; */
+        }
+        h1{
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 2rem 0 4rem 0;
+        }
+
+        form{
+            margin: 1rem;
+            text-align: center;
+        }
+
+        form label{
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        form input[type='text']{
+            width: 50%;
+            height:2.7rem;
+            padding: 10px;
+            font-size:1rem;
+            transition: width 0.4s,height 0.4s
+        }
+
+        form input[type='text']:focus{
+            width:51%;
+            height:2.9rem;
+        }
+
+        form input[type='submit']{
+            display: block;
+            margin:1rem auto;
+            width: 5rem;
+            height: 2.5rem;
+            border: 2px solid black;
+            font-weight: bold;
+            color: white;
+            background-color: steelblue;
+            cursor: pointer;
+            transition: width 0.4s,height 0.4s;
+        }
+        form input[type='submit']:hover{
+            width: 5.5rem;
+            height:3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>To Do List</h1>
+    <form action="/update/{{person.id }}" method='POST' autocomplete="off">
+        {% csrf_token %}
+        <input type="text" name='textField' id='textField' value='{{ person.textField }}'>
+        <input type="submit" value="ADD">
+    </form>
+</body>
+</html>
