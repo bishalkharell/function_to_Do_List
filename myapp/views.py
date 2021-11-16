@@ -1,38 +1,29 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render,redirect
 from .forms import ListForm
 from .models import ToDoList
+import json
+from django.core import serializers
 # Create your views here.
 
-def todoList(request):
-    # newForm = ListForm()
-    # if request.method == 'POST':
-    #     data = request.POST
-    #     field = data['textField']
-    #     obj = ToDoList.objects.create(textField=field)
-    #     return redirect('/')
-    # else:
-    #     person = ToDoList.objects.all()
 
-    #     content = {
-    #         'person':person,
-    #         'name':newForm
-    #     }
-    newForm = ListForm()
+def todoList(request):
+    obj = ToDoList.objects.all()
+    form = ListForm
+    context = {
+        'obj': obj,
+        'form' : form
+
+    }
+    return render(request,'index.html',context)
+
+def create(request):
     if request.method =='POST':
         form = ListForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+        form.save()
+        return redirect('/')
     
-    person = ToDoList.objects.all()
-    content = {
-        # 'person':person,
-        'name':newForm,
-        'person':person
-    }
-    return render(request,'index.html',content)
-
-
+    
 def update(request,id):
     person = ToDoList.objects.get(id=id)
     if request.method =='POST':
@@ -47,7 +38,7 @@ def update(request,id):
 
 
 def delete(request,id):
-    person = ToDoList.objects.get(id=id or none)
+    person = ToDoList.objects.get(id=id or None)
     person.delete()
     return redirect('/')
 
