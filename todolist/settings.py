@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ')p$$$tf!+((1c9&zqoo-0c6!zi7-_aa3nb76x(2w32ty+orjcy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['todolist-shadow.herokuapp.com','127.0.0.1']
 
